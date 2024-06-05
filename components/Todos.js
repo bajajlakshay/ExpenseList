@@ -1,13 +1,13 @@
-import { StyleSheet, Text, View,Button, SafeAreaView, ScrollView } from 'react-native'
+import { StyleSheet, Text, View,Button, SafeAreaView, ScrollView, Pressable } from 'react-native'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { removeTodo, updateTodo } from '../redux/reducers/todo/todoSlice'
+import { removeTodo,updateDate } from '../redux/reducers/todo/todoSlice'
 
 const Todos = () => {
     const todos = useSelector(state => state.todos)
     const dispatch = useDispatch()
     console.log(todos);
-    
+    let d = Date.now()
 
   return (
 
@@ -18,17 +18,22 @@ const Todos = () => {
         <Text style={styles.todotext}>
             {todos.todos.map((item)=>(
               <View  key={item.id}>
-                <View className="m-4  p-10 border-b-4 border-r-2 border-blue-400 items-center rounded-lg" >
-                    <Text>
-                        {item.text}
+                <View className=" p-3 border-b-4 border-r-2 border-red-300 items-center rounded-lg" >
+                    <Text className="text-3xl">
+                        Rs. {item.text}
                     </Text>
-                    <Button title='remove todo'
-                      onPress={()=>dispatch(removeTodo(item.id))}
-                    />
-                  <Button title='Update todo' onPress={() => dispatch(updateTodo(item.id,item.text))} /> 
+                    <Text className="text-xl">Added at: {todos.Dates}</Text>
+                    <Pressable 
+                    className="bg-orange-600 p-2 rounded-md m-3 px-5"
+                      onPress={()=>(
+                        dispatch(removeTodo(item.id)))}
+                    ><Text className="text-gray-300 text-center text-xl">
+                      remove todo
+                      </Text></Pressable>
                 </View>
                 </View>
             ))}
+            
         </Text>
         </ScrollView>
     </SafeAreaView>
@@ -40,7 +45,7 @@ export default Todos
 const styles = StyleSheet.create({
   todolist:{
     flexDirection:'column',
-    marginVertical:10,
+    marginVertical:5,
     alignItems:'center'
   },
   listing:{

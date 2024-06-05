@@ -21,7 +21,6 @@ function App(): React.JSX.Element {
   return (
     <Provider store={store}>
             <PersistGate persistor={persistor} loading={null}>
-
       <View style={styles.Container}>
         <AddTodo />
         <Todos />
@@ -33,14 +32,10 @@ function App(): React.JSX.Element {
 }
 
 const styles = StyleSheet.create({
-  inputContainer:{
-      backgroundColor:'#222222',
-      width:'50%',
-  },
+
   Container:{
     flex:1,
-
-    marginTop:10,
+    backgroundColor:'#2E3440',
     alignItems:'center',
     
   },

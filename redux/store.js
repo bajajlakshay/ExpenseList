@@ -2,7 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { persistReducer,persistStore } from "redux-persist";
 import todos from "./reducers/todo/todoSlice";
-import todoSlice from "./reducers/todo/todoSlice";
+
 
 const rootReducer = combineReducers({
     todos: todos,
