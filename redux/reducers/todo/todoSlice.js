@@ -18,8 +18,12 @@ export const todoSlice = createSlice({
             removeTodo:(state,action)=>{
                 state.todos = state.todos.filter((todo)=>(
                     todo.id !== action.payload)
-                )
-                
+                )  
+            },
+            updateTodo:(state,action)=>{
+                let {todos} = state;
+                state.todos = todos.map((item)=>
+                    item.id === action.payload.id ? action.payload : item)
             }
         },
         

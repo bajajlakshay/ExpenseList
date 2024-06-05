@@ -9,9 +9,10 @@ import {
 } from 'react-native';
 import { Provider, useDispatch } from 'react-redux';
 import { addTodo,removeTodo,updateTodo } from './redux/reducers/todo/todoSlice';
-import { store } from './redux/store';
+import { persistor, store } from './redux/store';
 import AddTodo from './components/AddTodo';
 import Todos from './components/Todos';
+import { PersistGate } from 'redux-persist/integration/react';
 
 
 function App(): React.JSX.Element {
@@ -19,10 +20,14 @@ function App(): React.JSX.Element {
   
   return (
     <Provider store={store}>
+            <PersistGate persistor={persistor} loading={null}>
+
       <View style={styles.Container}>
         <AddTodo />
         <Todos />
         </View>
+        </PersistGate>
+
     </Provider>
   );
 }

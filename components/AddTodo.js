@@ -11,7 +11,7 @@ const AddTodo = () => {
 
     const dispatch = useDispatch()
     const todos = useSelector(state => state.todos)
-    
+
     function AddTodos(){
   
       dispatch(addTodo(task))
@@ -22,6 +22,7 @@ const AddTodo = () => {
     <View style={styles.inputContainer}>
         <TextInput placeholder='Enter Text Here'
         onChangeText={(text)=>setTask(text)}
+        keyboardType='numeric'
         />
         <Button title='add to list'
           onPress={()=>AddTodos()}
