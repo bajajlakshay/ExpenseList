@@ -18,11 +18,11 @@ const Todos = () => {
         <Text style={styles.todotext}>
             {todos.todos.map((item)=>(
               <View  key={item.id}>
-                <View className=" p-3 border-b-4 border-r-2 border-red-300 items-center rounded-lg" >
-                    <Text className="text-3xl">
+                <View className=" p-3 border-b-4  border-red-300 items-center rounded-lg" >
+                    <Text className="text-3xl text-yellow-200">
                         Rs. {item.text}
                     </Text>
-                    <Text className="text-xl">Added at: {todos.Dates}</Text>
+                    <Text className="text-xl text-yellow-200">Added at: {todos.Dates}</Text>
                     <Pressable 
                     className="bg-orange-600 p-2 rounded-md m-3 px-5"
                       onPress={()=>(
