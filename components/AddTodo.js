@@ -2,12 +2,13 @@ import { StyleSheet, Text, View,TextInput,Button,FlatList, Pressable } from 'rea
 import React, { useState } from 'react'
 import { addTodo,updateDate } from '../redux/reducers/todo/todoSlice';
 import { useDispatch,  useSelector  } from 'react-redux';
+import Snackbar from 'react-native-snackbar';
 
 
 
 
 const AddTodo = () => {
-    const [task,setTask] = useState("")
+    const [task,setTask] = useState(0)
 
     const dispatch = useDispatch()
     const todos = useSelector(state => state.todos)
@@ -15,15 +16,29 @@ const AddTodo = () => {
     let d = new Date()
 
     function AddTodos(){
-  
-      dispatch(addTodo(task))
-    
+      if(task)  
+      {dispatch(addTodo(parseFloat(task)))}
+      else{
+        Snackbar.show({
+          text:"enter amount first",
+          textColor:'#4C566A',
+          duration: Snackbar.LENGTH_INDEFINITE,
+          action:{
+            text:"OK",
+            textColor:"#4C566A",
+            onPress: ()=>(Snackbar.dismiss())
+          },
+          marginBottom: 10,
+          backgroundColor:'#D8DEE9',
+          
+        })
+      }
     }
   return (
    
     <View style={styles.inputContainer}>
         <TextInput 
-        className="p-3 "
+        className="p-3 text-yellow-100"
         placeholderTextColor={'#ffffff'}
         placeholder='Enter Text Here'
         onChangeText={(text)=>setTask(text)}
